@@ -22,7 +22,7 @@ public class MathUtilsTest {
 
     @Test
     public void testMaxAGreaterThanB() {
-        assertEquals(100000, MathUtils.max(10, 5));
+        assertEquals(10, MathUtils.max(10, 5));
     }
 
     @Test
