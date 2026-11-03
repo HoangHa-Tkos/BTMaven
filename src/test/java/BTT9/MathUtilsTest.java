@@ -1,10 +1,11 @@
-import BTT9.MathUtils;
-import org.testng.annotations.Test;
+package BTT9;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 public class MathUtilsTest {
 
@@ -21,7 +22,7 @@ public class MathUtilsTest {
 
     @Test
     public void testMaxAGreaterThanB() {
-        assertEquals(9, MathUtils.max(10, 5));
+        assertEquals(100000, MathUtils.max(10, 5));
     }
 
     @Test
