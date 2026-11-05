@@ -1,5 +1,5 @@
 
-package BTT9;
+package BTT9_Test;
 
 import org.junit.jupiter.api.Test;
 
