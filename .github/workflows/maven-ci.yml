@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Test on ${{ matrix.os }}
+    name: Test and Coverage on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -30,15 +30,26 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # 3. Run Maven tests and package
-      - name: Build and Test with Maven
-        run: mvn --batch-mode clean package
+      # 3. Build, Test and Check Coverage
+      - name: Maven Verify with JaCoCo
+        run: mvn --batch-mode clean verify
 
       # 4. Upload JAR Artifact
       - name: Upload JAR Artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: BTT9-JAR-${{ matrix.os }}
           path: target/*.jar
           if-no-files-found: error
+          retention-days: 7
+
+      # 5. Upload JaCoCo HTML Report
+      - name: Upload JaCoCo Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BTT9-Coverage-${{ matrix.os }}
+          path: target/site/jacoco/
+          if-no-files-found: warn
           retention-days: 7
